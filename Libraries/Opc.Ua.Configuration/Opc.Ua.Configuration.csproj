@@ -1,17 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <AssemblyName>Opc.Ua.Configuration</AssemblyName>
+    <AssemblyName>OPCFoundation.NetStandard.Opc.Ua.Configuration</AssemblyName>
     <TargetFrameworks>$(LibTargetFrameworks)</TargetFrameworks>
     <LangVersion>6</LangVersion>
-    <PackageId>OPCFoundation.NetStandard.Opc.Ua.Configuration</PackageId>
     <RootNamespace>Opc.Ua.Configuration</RootNamespace>
     <Description>OPC UA Configuration Class Library</Description>
     <IsPackable>true</IsPackable>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
-    <PackageId>$(PackageId).Debug</PackageId>
     <AssemblyName>$(AssemblyName).Debug</AssemblyName>
   </PropertyGroup>
 

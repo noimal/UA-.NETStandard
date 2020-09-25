@@ -56,13 +56,15 @@ jobs:
     inputs:
       command: restore
       projects: 'UA Core Library.sln'
+      configuration: ${{parameters.config}}
       arguments: '--configuration ${{parameters.config}}'
   - task: DotNetCoreCLI@2
     displayName: Build ${{parameters.config}}
     inputs:
       command: build
       projects: 'UA Core Library.sln'
-      arguments: '--no-restore --configuration ${{parameters.config}} ${{ variables.msbuildversion }} ${{ variables.msbuildsign }}'
+      configuration: ${{parameters.config}}
+      arguments: '--no-restore ${{ variables.msbuildversion }} ${{ variables.msbuildsign }}'
   - task: CmdLine@2
     displayName: 'Sign Assemblies'
     condition: ne( variables['SigningClientSecret'], '')
@@ -79,7 +81,7 @@ jobs:
       nobuild: true
       versioningScheme: 'byEnvVar'
       versionEnvVar: 'nugetpreviewversion'
-      includeSymbols: true
+      #includeSymbols: true
   - task: NuGetCommand@2
     displayName: Pack Nuget Legacy
     condition: and(eq('${{parameters.config}}', 'Release'), succeeded())
