@@ -64,7 +64,7 @@ jobs:
       command: build
       projects: 'UA Core Library.sln'
       configuration: ${{parameters.config}}
-      arguments: '--no-restore ${{ variables.msbuildversion }} ${{ variables.msbuildsign }}'
+      arguments: '--no-restore --configuration ${{parameters.config}} ${{ variables.msbuildversion }} ${{ variables.msbuildsign }}'
   - task: CmdLine@2
     displayName: 'Sign Assemblies'
     condition: ne( variables['SigningClientSecret'], '')
@@ -76,7 +76,6 @@ jobs:
     inputs:
       command: pack
       packagesToPack:  'UA Core Library.sln'
-      configuration: ${{parameters.config}}
       configurationToPack: ${{parameters.config}}
       nobuild: true
       versioningScheme: 'byEnvVar'
