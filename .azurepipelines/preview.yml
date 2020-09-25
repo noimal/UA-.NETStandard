@@ -76,11 +76,12 @@ jobs:
     inputs:
       command: pack
       packagesToPack:  'UA Core Library.sln'
+      configuration: ${{parameters.config}}
       configurationToPack: ${{parameters.config}}
       nobuild: true
       versioningScheme: 'byEnvVar'
       versionEnvVar: 'nugetpreviewversion'
-      #includeSymbols: true
+      includeSymbols: true
   - task: NuGetCommand@2
     displayName: Pack Nuget Legacy
     condition: and(eq('${{parameters.config}}', 'Release'), succeeded())
